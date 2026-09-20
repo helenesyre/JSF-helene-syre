@@ -1,6 +1,6 @@
 export default function Product() {
   return (
-    <div>
+    <div className="py-8">
       <h1>Product page</h1>
     </div>
   );
