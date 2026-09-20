@@ -1,14 +1,17 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, Raleway } from "next/font/google";
 import "./globals.css";
+import Link from "next/link";
+import { Providers } from "./providers";
+import { Search, ShoppingBag } from "lucide-react";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const raleway = Raleway({
+  variable: "--font-raleway",
   subsets: ["latin"],
 });
 
@@ -21,12 +24,67 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${inter.variable} ${raleway.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
-        <header>header</header>
-        {children}
-        <footer>footer</footer>
+      <body className="min-h-full flex flex-col bg-neutral-100">
+        <header className="w-full flex gap-4 px-12 py-5 justify-between bg-stone-50 shadow-sm">
+          <nav className="flex gap-4">
+            <Link href={"/"}>COMPANY LOGO</Link>
+            <Link href={"/"}>Home</Link>
+            <Link href={"/shop"}>Shop</Link>
+            <Link href={"/about"}>About</Link>
+            <Link href={"/contact"}>Contact</Link>
+          </nav>
+          <div>
+            <button>
+              <Search size={20} strokeWidth={1.5} />
+            </button>
+            <button>
+              <ShoppingBag size={20} strokeWidth={1.5} />
+            </button>
+            <button>Sign In</button>
+          </div>
+        </header>
+        <main className="flex flex-col flex-1 px-12">
+          <Providers>{children}</Providers>
+        </main>
+        <footer className="w-full p-12 bg-stone-50 shadow-[0_-2px_4px_rgba(0,0,0,0.05)]">
+          <div className="flex flex-row items-center justify-between">
+            {/* Footer heading */}
+            <h2 className="font-extrabold text-red-900">Shopflow</h2>
+            {/* Footer navigation links */}
+            <ul className="flex flex-row gap-4">
+              <li>
+                <Link href={"/shop"}>Shop</Link>
+              </li>
+              <li>
+                <Link href={"/about"}>Contact</Link>
+              </li>
+              <li>
+                <Link href={"/contact"}>Term of Service</Link>
+              </li>
+              <li>
+                <Link href={"/privacy"}>Cookie Policy</Link>
+              </li>
+            </ul>
+          </div>
+          <hr className="mt-8 mb-4 text-stone-800" />
+          <div className="flex flex-row gap-4 justify-between">
+            {/* Social media links */}
+            <ul className="flex flex-row gap-4">
+              <li>
+                <Link href={"https://facebook.com"}>Facebook</Link>
+              </li>
+              <li>
+                <Link href={"https://instagram.com"}>Instagram</Link>
+              </li>
+            </ul>
+            {/* Copyright information */}
+            <p>
+              &copy;{new Date().getFullYear()} Shopflow. All rights reserved.
+            </p>
+          </div>
+        </footer>
       </body>
     </html>
   );
