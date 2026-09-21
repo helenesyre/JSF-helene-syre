@@ -4,6 +4,8 @@ import "./globals.css";
 import Link from "next/link";
 import { Providers } from "./providers";
 import { Search, ShoppingBag } from "lucide-react";
+import Button from "./_components/ui/Button";
+import Image from "next/image";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -27,27 +29,48 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${inter.variable} ${raleway.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-neutral-100">
-        <header className="w-full flex gap-4 px-12 py-5 justify-between bg-stone-50 shadow-sm">
-          <nav className="flex gap-4">
-            <Link href={"/"}>COMPANY LOGO</Link>
+        {/* Navigation */}
+        <header className="w-full flex items-center gap-4 px-12 py-5 justify-between bg-stone-50 shadow-sm">
+          <nav className="flex items-center gap-4">
+            <Link href={"/"}>
+              <Image
+                src="/shopflow-logo.svg"
+                alt="Shopflow"
+                width={28}
+                height={28}
+              />
+            </Link>
             <Link href={"/"}>Home</Link>
-            <Link href={"/shop"}>Shop</Link>
-            <Link href={"/about"}>About</Link>
+            <Link href={"/coming-soon"}>Shop</Link>
             <Link href={"/contact"}>Contact</Link>
           </nav>
-          <div>
-            <button>
+          <div className="flex items-center gap-2">
+            <Button
+              variant={"Medium"}
+              color={"Secondary"}
+              icon={true}
+              href="/coming-soon"
+            >
               <Search size={20} strokeWidth={1.5} />
-            </button>
-            <button>
+            </Button>
+            <Button
+              variant={"Medium"}
+              color={"Secondary"}
+              icon={true}
+              href="/cart"
+            >
               <ShoppingBag size={20} strokeWidth={1.5} />
-            </button>
-            <button>Sign In</button>
+            </Button>
+            <Button variant={"Medium"} color={"Primary"} href="/coming-soon">
+              Sign In
+            </Button>
           </div>
         </header>
-        <main className="flex flex-col flex-1 px-12">
+        {/* Main content */}
+        <main className="flex flex-col flex-1">
           <Providers>{children}</Providers>
         </main>
+        {/* Footer */}
         <footer className="w-full p-12 bg-stone-50 shadow-[0_-2px_4px_rgba(0,0,0,0.05)]">
           <div className="flex flex-row items-center justify-between">
             {/* Footer heading */}
@@ -55,16 +78,16 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             {/* Footer navigation links */}
             <ul className="flex flex-row gap-4">
               <li>
-                <Link href={"/shop"}>Shop</Link>
+                <Link href={"/coming-soon"}>Shop</Link>
               </li>
               <li>
-                <Link href={"/about"}>Contact</Link>
+                <Link href={"/contact"}>Contact</Link>
               </li>
               <li>
-                <Link href={"/contact"}>Term of Service</Link>
+                <Link href={"/coming-soon"}>Term of Service</Link>
               </li>
               <li>
-                <Link href={"/privacy"}>Cookie Policy</Link>
+                <Link href={"/coming-soon"}>Cookie Policy</Link>
               </li>
             </ul>
           </div>

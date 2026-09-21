@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export type ProductImage = {
   url: string;
   alt: string;
@@ -35,4 +37,14 @@ export type ResponseMetadata = {
 export type ProductResponse = {
   data: Array<Product>;
   meta: ResponseMetadata;
+};
+
+export type SingleProductResponse = {
+  data: Product;
+  meta: object;
+};
+
+export type BreadCrumb = {
+  label: ReactNode;
+  link?: string;
 };
