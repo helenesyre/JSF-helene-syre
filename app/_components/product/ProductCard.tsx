@@ -10,7 +10,7 @@ export default function ProductCard({
   priority?: boolean;
 }) {
   return (
-    <div className="flex flex-col rounded-b-md bg-stone-50 shadow-sm">
+    <div className="flex flex-col justify-between rounded-b-md bg-stone-50 shadow-sm hover:shadow-md hover:scale-102 duration-300">
       {/* Image */}
       <a href={`/product/${product.id}`}>
         <div className="relative aspect-square w-full">
@@ -23,18 +23,18 @@ export default function ProductCard({
             loading={priority ? "eager" : "lazy"}
           />
         </div>
+        {/* Content */}
+        <div className="p-4 flex-1">
+          {/* Rating */}
+          <p className="text-sm text-stone-400">{product.rating}</p>
+          {/* Title */}
+          <h3>{product.title}</h3>
+          {/* Description */}
+          <p className="text-base text-stone-500 line-clamp-2">
+            {product.description}
+          </p>
+        </div>
       </a>
-      {/* Content */}
-      <div className="p-4 flex-1">
-        {/* Rating */}
-        <p className="text-sm text-stone-400">{product.rating}</p>
-        {/* Title */}
-        <h3>{product.title}</h3>
-        {/* Description */}
-        <p className="text-base text-stone-500 line-clamp-2">
-          {product.description}
-        </p>
-      </div>
       <div className="flex items-center justify-between p-4 border-t border-stone-300">
         {/* Price */}
         <div className="text-xl font-bold">
@@ -51,8 +51,12 @@ export default function ProductCard({
           )}
         </div>
         {/* Cart button */}
-        <button className="text-stone-800 cursor-pointer">
-          <ShoppingBag size={24} strokeWidth={1.5} />
+        <button className="group p-1.5 rounded text-stone-800 hover:bg-red-900 hover:text-stone-50 duration-300 cursor-pointer">
+          <ShoppingBag
+            size={24}
+            strokeWidth={1.5}
+            className="transition-transform duration-300 group-hover:rotate-12"
+          />
         </button>
       </div>
     </div>
