@@ -3,9 +3,7 @@ import { Inter, Raleway } from "next/font/google";
 import "./globals.css";
 import Link from "next/link";
 import { Providers } from "./providers";
-import { Search, ShoppingBag } from "lucide-react";
-import Button from "./_components/ui/Button";
-import Image from "next/image";
+import Navbar from "./_components/navigation/Navbar";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -30,43 +28,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     >
       <body className="min-h-full flex flex-col bg-neutral-100">
         {/* Navigation */}
-        <header className="w-full flex items-center gap-4 px-12 py-5 justify-between bg-stone-50 shadow-sm">
-          <nav className="flex items-center gap-4">
-            <Link href={"/"}>
-              <Image
-                src="/shopflow-logo.svg"
-                alt="Shopflow"
-                width={28}
-                height={28}
-                style={{ width: "34px", height: "34px" }}
-              />
-            </Link>
-            <Link href={"/"}>Home</Link>
-            <Link href={"/coming-soon"}>Shop</Link>
-            <Link href={"/contact"}>Contact</Link>
-          </nav>
-          <div className="flex items-center gap-2">
-            <Button
-              variant={"Medium"}
-              color={"Secondary"}
-              icon={true}
-              href="/coming-soon"
-            >
-              <Search size={20} strokeWidth={1.5} />
-            </Button>
-            <Button
-              variant={"Medium"}
-              color={"Secondary"}
-              icon={true}
-              href="/cart"
-            >
-              <ShoppingBag size={20} strokeWidth={1.5} />
-            </Button>
-            <Button variant={"Medium"} color={"Primary"} href="/coming-soon">
-              Sign In
-            </Button>
-          </div>
-        </header>
+        <Navbar />
         {/* Main content */}
         <main className="flex flex-col flex-1">
           <Providers>{children}</Providers>
@@ -79,28 +41,58 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             {/* Footer navigation links */}
             <ul className="flex flex-row gap-4">
               <li>
-                <Link href={"/coming-soon"}>Shop</Link>
+                <Link
+                  href={"/coming-soon"}
+                  className="font-medium hover:text-red-900"
+                >
+                  Shop
+                </Link>
               </li>
               <li>
-                <Link href={"/contact"}>Contact</Link>
+                <Link
+                  href={"/contact"}
+                  className="font-medium hover:text-red-900"
+                >
+                  Contact
+                </Link>
               </li>
               <li>
-                <Link href={"/coming-soon"}>Term of Service</Link>
+                <Link
+                  href={"/coming-soon"}
+                  className="font-medium hover:text-red-900"
+                >
+                  Term of Service
+                </Link>
               </li>
               <li>
-                <Link href={"/coming-soon"}>Cookie Policy</Link>
+                <Link
+                  href={"/coming-soon"}
+                  className="font-medium hover:text-red-900"
+                >
+                  Cookie Policy
+                </Link>
               </li>
             </ul>
           </div>
-          <hr className="mt-8 mb-4 text-stone-800" />
+          <hr className="mt-8 mb-4 text-stone-300" />
           <div className="flex flex-row gap-4 justify-between">
             {/* Social media links */}
             <ul className="flex flex-row gap-4">
               <li>
-                <Link href={"https://facebook.com"}>Facebook</Link>
+                <Link
+                  href={"https://facebook.com"}
+                  className="hover:text-red-900"
+                >
+                  Facebook
+                </Link>
               </li>
               <li>
-                <Link href={"https://instagram.com"}>Instagram</Link>
+                <Link
+                  href={"https://instagram.com"}
+                  className="hover:text-red-900"
+                >
+                  Instagram
+                </Link>
               </li>
             </ul>
             {/* Copyright information */}
