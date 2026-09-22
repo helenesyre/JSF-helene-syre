@@ -34,6 +34,7 @@ export type ButtonProps = {
   width?: ButtonWidthVariantType;
   icon?: boolean;
   href?: string;
+  type?: "button" | "submit" | "reset";
   prefix?: ReactNode;
   suffix?: ReactNode;
   children?: ReactNode;
@@ -50,6 +51,7 @@ export default function Button(props: ButtonProps) {
     suffix,
     children,
     href,
+    type = "button",
   } = props;
 
   const variantClass = icon
@@ -78,5 +80,9 @@ export default function Button(props: ButtonProps) {
       </a>
     );
   }
-  return <button className={buttonClasses}>{content}</button>;
+  return (
+    <button type={type} className={buttonClasses}>
+      {content}
+    </button>
+  );
 }
