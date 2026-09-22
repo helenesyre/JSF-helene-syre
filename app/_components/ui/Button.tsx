@@ -21,9 +21,17 @@ export enum ButtonColorVariant {
 }
 export type ButtonColorVariantType = keyof typeof ButtonColorVariant;
 
+export enum ButtonWidthVariant {
+  Full = "w-full",
+  Auto = "w-auto",
+}
+
+export type ButtonWidthVariantType = keyof typeof ButtonWidthVariant;
+
 export type ButtonProps = {
   variant: ButtonVariantType;
   color: ButtonColorVariantType;
+  width?: ButtonWidthVariantType;
   icon?: boolean;
   href?: string;
   prefix?: ReactNode;
@@ -36,6 +44,7 @@ export default function Button(props: ButtonProps) {
   const {
     variant = "Medium",
     color = "Primary",
+    width = "Auto",
     icon = false,
     prefix,
     suffix,
@@ -47,12 +56,13 @@ export default function Button(props: ButtonProps) {
     ? ButtonIconVariant[variant]
     : ButtonVariant[variant];
   const colorClass = ButtonColorVariant[color];
+  const widthClass = ButtonWidthVariant[width];
 
   if (!children) {
     return null;
   }
 
-  const buttonClasses = `${variantClass} ${colorClass} font-semibold rounded flex items-center gap-2 cursor-pointer transition-colors ${props.className ?? ""}`;
+  const buttonClasses = `${variantClass} ${colorClass} ${widthClass} font-semibold rounded flex items-center justify-center gap-2 cursor-pointer transition-colors ${props.className ?? ""}`;
   const content = (
     <>
       {prefix && <span className="prefix">{prefix}</span>}
