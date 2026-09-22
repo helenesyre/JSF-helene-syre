@@ -38,7 +38,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
                 alt="Shopflow"
                 width={28}
                 height={28}
-                style={{ width: "auto", height: "auto" }}
+                style={{ width: "34px", height: "34px" }}
               />
             </Link>
             <Link href={"/"}>Home</Link>
