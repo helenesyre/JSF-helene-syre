@@ -7,8 +7,10 @@ import ReviewList from "@/app/_components/product/ReviewList";
 import AddToCartCard from "@/app/_components/product/AddToCartCard";
 import BreadCrumbs from "@/app/_components/ui/Breadcrumbs";
 import { BreadCrumb, SingleProductResponse } from "../../_lib/types";
-import { House } from "lucide-react";
+import { BadgePercent, House } from "lucide-react";
 import StarRating from "@/app/_components/ui/StarRating";
+import Tag from "@/app/_components/ui/Tags";
+import { calculateDiscountPercentage } from "@/app/_lib/utils";
 
 export default function Product() {
   const params = useParams();
@@ -66,6 +68,21 @@ export default function Product() {
       </section>
       {/* Product Details Section */}
       <section className="flex-1 py-12">
+        {/* Sales tag */}
+        {product.discountedPrice !== null &&
+          product.discountedPrice < product.price && (
+            <Tag
+              variant="Medium"
+              color="Primary"
+              prefix={<BadgePercent size={18} />}
+            >
+              {calculateDiscountPercentage(
+                product.price,
+                product.discountedPrice,
+              )}
+              %
+            </Tag>
+          )}
         {/* Product Title */}
         <h1>{product.title}</h1>
         {/* Price Section */}
@@ -73,13 +90,13 @@ export default function Product() {
           {product.discountedPrice !== null &&
           product.discountedPrice < product.price ? (
             <>
-              <span className=" text-red-900">${product.discountedPrice}</span>
+              <span className=" text-red-900">{product.discountedPrice}kr</span>
               <span className="text-stone-400 ml-2 line-through">
-                ${product.price}
+                {product.price}kr
               </span>
             </>
           ) : (
-            <span>${product.price}</span>
+            <span>{product.price}kr</span>
           )}
         </div>
         <div className="flex flex-row gap-4 mb-4">

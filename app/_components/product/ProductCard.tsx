@@ -1,7 +1,9 @@
 import { Product } from "@/app/_lib/types";
 import Image from "next/image";
-import { ShoppingBag } from "lucide-react";
+import { BadgePercent, ShoppingBag } from "lucide-react";
 import StarRating from "@/app/_components/ui/StarRating";
+import Tag from "@/app/_components/ui/Tags";
+import { calculateDiscountPercentage } from "@/app/_lib/utils";
 
 export default function ProductCard({
   product,
@@ -12,17 +14,35 @@ export default function ProductCard({
 }) {
   return (
     <div className="flex flex-col justify-between rounded-b-md bg-stone-50 shadow-sm hover:shadow-md hover:scale-102 duration-300">
-      {/* Image */}
       <a href={`/product/${product.id}`}>
-        <div className="relative aspect-square w-full">
-          <Image
-            src={product.image.url}
-            alt={product.image.alt ?? product.title}
-            fill
-            sizes="(max-width: 639px) 100vw, (max-width: 767px) 50vw, 33vw"
-            className="object-cover"
-            loading={priority ? "eager" : "lazy"}
-          />
+        <div className="relative">
+          {/* Image */}
+          <div className="relative aspect-square w-full">
+            <Image
+              src={product.image.url}
+              alt={product.image.alt ?? product.title}
+              fill
+              sizes="(max-width: 639px) 100vw, (max-width: 767px) 50vw, 33vw"
+              className="object-cover"
+              loading={priority ? "eager" : "lazy"}
+            />
+          </div>
+          {/* Sales tag */}
+          {product.discountedPrice !== null &&
+            product.discountedPrice < product.price && (
+              <Tag
+                variant="Medium"
+                color="Primary"
+                className="absolute top-4 right-4"
+                prefix={<BadgePercent size={18} />}
+              >
+                {calculateDiscountPercentage(
+                  product.price,
+                  product.discountedPrice,
+                )}
+                %
+              </Tag>
+            )}
         </div>
         {/* Content */}
         <div className="p-4 flex-1">
@@ -47,13 +67,13 @@ export default function ProductCard({
           {product.discountedPrice !== null &&
           product.discountedPrice < product.price ? (
             <>
-              <span className=" text-red-900">${product.discountedPrice}</span>
+              <span className=" text-red-900">{product.discountedPrice}kr</span>
               <span className="text-stone-400 ml-2 line-through">
-                ${product.price}
+                {product.price}kr
               </span>
             </>
           ) : (
-            <span>${product.price}</span>
+            <span>{product.price}kr</span>
           )}
         </div>
         {/* Cart button */}
