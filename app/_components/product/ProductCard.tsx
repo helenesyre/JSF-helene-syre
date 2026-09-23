@@ -1,6 +1,7 @@
 import { Product } from "@/app/_lib/types";
 import Image from "next/image";
 import { ShoppingBag } from "lucide-react";
+import StarRating from "@/app/_components/ui/StarRating";
 
 export default function ProductCard({
   product,
@@ -26,9 +27,14 @@ export default function ProductCard({
         {/* Content */}
         <div className="p-4 flex-1">
           {/* Rating */}
-          <p className="text-sm text-stone-400">{product.rating}</p>
+          <div className="flex items-center gap-2">
+            <StarRating rating={product.rating} size={16} />
+            <p className="text-sm font-semibold text-stone-500">
+              {product.rating.toFixed(1)}
+            </p>
+          </div>
           {/* Title */}
-          <h3>{product.title}</h3>
+          <h3 className="mt-3 mb-2">{product.title}</h3>
           {/* Description */}
           <p className="text-base text-stone-500 line-clamp-2">
             {product.description}

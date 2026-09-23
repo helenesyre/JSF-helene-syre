@@ -8,6 +8,7 @@ import AddToCartCard from "@/app/_components/product/AddToCartCard";
 import BreadCrumbs from "@/app/_components/ui/Breadcrumbs";
 import { BreadCrumb, SingleProductResponse } from "../../_lib/types";
 import { House } from "lucide-react";
+import StarRating from "@/app/_components/ui/StarRating";
 
 export default function Product() {
   const params = useParams();
@@ -88,9 +89,10 @@ export default function Product() {
           </span>
           <p className="text-stone-300 font-semibold">|</p>
           {/* Rating */}
-          <p className="text-stone-500 font-semibold">
-            {product.rating} reviews
-          </p>
+          <div className="flex items-center gap-2">
+            <StarRating rating={product.rating} size={20} />
+            <p className="text-stone-500 font-semibold">{product.rating}</p>
+          </div>
         </div>
         {/* Description */}
         <div className="mb-4">
