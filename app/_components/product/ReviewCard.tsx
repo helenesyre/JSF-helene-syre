@@ -9,7 +9,7 @@ export default function ReviewCard({ review }: { review: ProductReview }) {
     .map((namePart) => namePart.charAt(0).toUpperCase())
     .join("");
   return (
-    <div className="p-4 bg-stone-50 shadow-md rounded-lg mb-4">
+    <div className="p-4 bg-stone-50 shadow-md rounded-lg">
       <div className="flex flex-row items-center gap-4">
         {/* User Avatar */}
         <Avatar initials={avatarInitials} />

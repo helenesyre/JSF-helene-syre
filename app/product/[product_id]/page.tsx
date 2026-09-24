@@ -11,6 +11,7 @@ import { BadgePercent, House } from "lucide-react";
 import StarRating from "@/app/_components/ui/StarRating";
 import Tag from "@/app/_components/ui/Tags";
 import { calculateDiscountPercentage } from "@/app/_lib/utils";
+import CallToAction from "@/app/_components/product/CallToAction";
 
 export default function Product() {
   const params = useParams();
@@ -51,9 +52,9 @@ export default function Product() {
   ];
 
   return (
-    <div className="flex flex-row gap-4 relative">
+    <div className="grid grid-cols-2 relative">
       {/* Image Section */}
-      <section className="relative aspect-square w-full flex-1">
+      <section className="relative aspect-square w-full">
         {/* Product Image */}
         <Image
           src={product.image.url}
@@ -67,39 +68,43 @@ export default function Product() {
         <BreadCrumbs crumbs={breadCrumbs} />
       </section>
       {/* Product Details Section */}
-      <section className="flex-1 py-12">
-        {/* Sales tag */}
-        {product.discountedPrice !== null &&
-          product.discountedPrice < product.price && (
-            <Tag
-              variant="Medium"
-              color="Primary"
-              prefix={<BadgePercent size={18} />}
-            >
-              {calculateDiscountPercentage(
-                product.price,
-                product.discountedPrice,
-              )}
-              %
-            </Tag>
-          )}
-        {/* Product Title */}
-        <h1>{product.title}</h1>
-        {/* Price Section */}
-        <div className="text-3xl font-bold">
+      <section className="min-w-0 px-32 py-12">
+        <div className="flex flex-col gap-1 mb-3">
+          {/* Sales tag */}
           {product.discountedPrice !== null &&
-          product.discountedPrice < product.price ? (
-            <>
-              <span className=" text-red-900">{product.discountedPrice}kr</span>
-              <span className="text-stone-400 ml-2 line-through">
-                {product.price}kr
-              </span>
-            </>
-          ) : (
-            <span>{product.price}kr</span>
-          )}
+            product.discountedPrice < product.price && (
+              <Tag
+                variant="Medium"
+                color="Primary"
+                prefix={<BadgePercent size={18} />}
+              >
+                {calculateDiscountPercentage(
+                  product.price,
+                  product.discountedPrice,
+                )}
+                %
+              </Tag>
+            )}
+          {/* Product Title */}
+          <h1>{product.title}</h1>
+          {/* Price Section */}
+          <div className="text-3xl font-bold">
+            {product.discountedPrice !== null &&
+            product.discountedPrice < product.price ? (
+              <>
+                <span className=" text-red-900">
+                  {product.discountedPrice}kr
+                </span>
+                <span className="text-stone-400 ml-2 line-through">
+                  {product.price}kr
+                </span>
+              </>
+            ) : (
+              <span>{product.price}kr</span>
+            )}
+          </div>
         </div>
-        <div className="flex flex-row gap-4 mb-4">
+        <div className="flex flex-row gap-4 mb-6">
           {/* Tags */}
           <span className="uppercase text-red-900 font-semibold">
             {product.tags.join(" & ")}
@@ -125,6 +130,9 @@ export default function Product() {
         </div>
       </section>
       <AddToCartCard product={product} />
+      <section className="col-span-2">
+        <CallToAction />
+      </section>
     </div>
   );
 }

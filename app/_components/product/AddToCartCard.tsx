@@ -5,7 +5,7 @@ import Button from "../ui/Button";
 
 export default function AddToCartCard({ product }: { product: Product }) {
   return (
-    <div className="fixed bottom-0 left-0 right-0 bg-stone-50 p-4 m-8 shadow-md rounded-md flex justify-between items-center">
+    <div className="sticky bottom-8 col-span-2 m-8 bg-stone-50 p-4 shadow-md rounded-md flex justify-between items-center">
       <div className="flex flex-row items-center gap-4">
         {/* Product image */}
         <div className="w-20 h-20 relative">

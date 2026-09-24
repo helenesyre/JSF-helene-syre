@@ -1,9 +1,9 @@
 import { ReactNode } from "react";
 
 export enum TagVariant {
-  Small = "px-2 py-1.5 text-sm",
-  Medium = "px-2.5 py-1.5 text-base",
-  Large = "px-3 py-1.5 text-lg",
+  Small = "px-2 py-1 text-sm",
+  Medium = "px-2.5 py-1 text-base",
+  Large = "px-3 py-1 text-lg",
 }
 
 export enum TagIconVariant {

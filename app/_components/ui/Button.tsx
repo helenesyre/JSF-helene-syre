@@ -17,7 +17,7 @@ export type ButtonVariantType = keyof typeof ButtonVariant;
 export enum ButtonColorVariant {
   Primary = "bg-red-900 text-stone-50 hover:bg-red-800",
   Secondary = "bg-stone-200 text-stone-900 hover:bg-stone-300",
-  Tertiary = "bg-stone-950 text-stone-50 hover:bg-stone-700",
+  Tertiary = "bg-stone-950 text-stone-50 hover:bg-stone-800",
 }
 export type ButtonColorVariantType = keyof typeof ButtonColorVariant;
 
