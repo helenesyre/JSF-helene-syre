@@ -15,24 +15,24 @@ export default function Navbar() {
           <Image
             src="/shopflow-logo.svg"
             alt="Shopflow"
-            width={28}
-            height={28}
-            style={{ width: "34px", height: "34px" }}
+            width={40}
+            height={40}
+            style={{ width: "150px", height: "40px", marginRight: "20px" }}
           />
         </Link>
         <Link
           href={"/"}
           className={
             pathname === "/"
-              ? "font-bold hover:text-red-900"
-              : "font-medium hover:text-red-900"
+              ? "font-bold hover:text-red-900 mt-1"
+              : "font-medium hover:text-red-900 mt-1"
           }
         >
           Home
         </Link>
         <Link
           href={"/coming-soon"}
-          className={"font-medium hover:text-red-900"}
+          className={"font-medium hover:text-red-900 mt-1"}
         >
           Shop
         </Link>
@@ -40,8 +40,8 @@ export default function Navbar() {
           href={"/contact"}
           className={
             pathname === "/contact"
-              ? "font-bold hover:text-red-900 "
-              : "font-medium hover:text-red-900"
+              ? "font-bold hover:text-red-900 mt-1"
+              : "font-medium hover:text-red-900 mt-1"
           }
         >
           Contact
