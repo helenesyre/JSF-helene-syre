@@ -24,6 +24,7 @@ export type ButtonColorVariantType = keyof typeof ButtonColorVariant;
 export enum ButtonWidthVariant {
   Full = "w-full",
   Auto = "w-auto",
+  Fit = "w-fit",
 }
 
 export type ButtonWidthVariantType = keyof typeof ButtonWidthVariant;
