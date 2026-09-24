@@ -15,9 +15,10 @@ export default function Navbar() {
           <Image
             src="/shopflow-logo.svg"
             alt="Shopflow"
-            width={40}
+            width={160}
             height={40}
-            style={{ width: "150px", height: "40px", marginRight: "20px" }}
+            loading="eager"
+            className="h-10 w-auto mr-6"
           />
         </Link>
         <Link
