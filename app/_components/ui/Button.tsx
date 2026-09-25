@@ -41,7 +41,6 @@ export type ButtonProps = {
   children?: ReactNode;
   className?: string;
   onClick?: () => void;
-  ariaLabel?: string;
 };
 
 export default function Button(props: ButtonProps) {
@@ -85,12 +84,7 @@ export default function Button(props: ButtonProps) {
     );
   }
   return (
-    <button
-      type={type}
-      className={buttonClasses}
-      onClick={onClick}
-      aria-label={props.ariaLabel}
-    >
+    <button type={type} className={buttonClasses} onClick={onClick}>
       {content}
     </button>
   );
