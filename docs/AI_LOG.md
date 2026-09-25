@@ -57,3 +57,17 @@
 **Purpose:** I got a warning that the stars were missing `key` props in the array mapping. I also couldn't get the stars to show the right color using fill prop like the source, so I asked Claude why it wasn't working and how to fix it.
 
 **Outcome:** Claude explained to me I was missing `key` props for the stars in the array mapping. I had had a long day at work and totally forgot about it, but manage to fix the issue. It also swapped the hardcoded `fill` props for Tailwind `fill-*` classes passed in through `filledColor` and `emptyColor` props.
+
+---
+
+## Mobile navbar menu
+
+**Tool used:** Claude
+
+**Date:** 25 September 2026
+
+**Purpose:** My mobile hamburger menu wasn't opening, but I could toggle between the hamburger and the X but nothing showed up.
+
+**Outcome:** Claude found that `isOpen` state existed and the icon swapped correctly, but I had never actually built the dropdown menu panel itself, so there was nothing to show. I then asked for it to overlay on top of the page instead of pushing rest of content down, so Claude switched it to `absolute` positioning under the header.
+
+I later stumble upon an issue where the dark backdrop was covering the navbar itself, so Claude helped me adjusting its positioning to be `absolute top-full` instead of `fixed inset-0`.

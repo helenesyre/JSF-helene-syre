@@ -2,86 +2,126 @@
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
+import Logo from "../ui/Logo";
 import Button from "../ui/Button";
-import { Search, ShoppingBag } from "lucide-react";
+import { X, Menu, ShoppingBag } from "lucide-react";
 import { useCart } from "@/app/_lib/stores";
+
+const navLinks = [
+  { label: "Home", href: "/" },
+  { label: "Shop", href: "/coming-soon" },
+  { label: "Contact", href: "/contact" },
+];
 
 export default function Navbar() {
   const pathname = usePathname();
+
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const toggleMenu = () => setIsOpen(!isOpen);
+
+  useEffect(() => {
+    setIsOpen(false);
+  }, [pathname]);
+
   const [cartCount, setCartCount] = useState<number>(0);
   const { cartItemCount, products } = useCart();
   useEffect(() => {
     setCartCount(cartItemCount());
   }, [products, cartItemCount]);
 
+  const linkClass = (href: string) =>
+    pathname === href
+      ? "font-bold hover:text-red-900 mt-1"
+      : "font-medium hover:text-red-900 mt-1";
+
   return (
-    <header className="w-full flex items-center gap-4 px-12 py-5 justify-between bg-stone-50 shadow-sm">
-      <nav className="flex items-center gap-4">
-        <Link href={"/"}>
-          <Image
-            src="/shopflow-logo.svg"
-            alt="Shopflow"
-            width={160}
-            height={40}
-            loading="eager"
-            className="h-10 w-auto mr-6"
-          />
-        </Link>
-        <Link
-          href={"/"}
-          className={
-            pathname === "/"
-              ? "font-bold hover:text-red-900 mt-1"
-              : "font-medium hover:text-red-900 mt-1"
-          }
-        >
-          Home
-        </Link>
-        <Link
-          href={"/coming-soon"}
-          className={"font-medium hover:text-red-900 mt-1"}
-        >
-          Shop
-        </Link>
-        <Link
-          href={"/contact"}
-          className={
-            pathname === "/contact"
-              ? "font-bold hover:text-red-900 mt-1"
-              : "font-medium hover:text-red-900 mt-1"
-          }
-        >
-          Contact
-        </Link>
-      </nav>
-      <div className="flex items-center gap-2">
-        <Button
-          variant={"Medium"}
-          color={"Secondary"}
-          icon={true}
-          href="/coming-soon"
-        >
-          <Search size={20} strokeWidth={1.5} />
-        </Button>
-        <Button
-          variant={"Medium"}
-          color={"Secondary"}
-          icon={true}
-          href="/cart"
-          className="relative"
-        >
-          <ShoppingBag size={20} strokeWidth={1.5} />
-          {cartCount > 0 && (
-            <span className="absolute -top-1 -right-1 bg-stone-800 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
-              {cartCount}
-            </span>
-          )}
-        </Button>
-        <Button variant={"Medium"} color={"Primary"} href="/coming-soon">
-          Sign In
-        </Button>
+    <header className="relative w-full flex flex-col bg-stone-50 shadow-sm">
+      <div className="w-full flex items-center gap-4 px-12 py-5 justify-between">
+        <nav className="flex items-center gap-4">
+          <Link href={"/"}>
+            <Logo />
+          </Link>
+          {/* Desktop links */}
+          <div className="hidden md:flex items-center gap-4">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`${linkClass(link.href)} mt-1`}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
+        </nav>
+        <div className="flex items-center gap-2">
+          <Button
+            variant={"Medium"}
+            color={"Secondary"}
+            icon={true}
+            href="/cart"
+            className="relative"
+          >
+            <ShoppingBag size={20} strokeWidth={1.5} />
+            {cartCount > 0 && (
+              <span className="absolute -top-1 -right-1 bg-stone-800 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
+                {cartCount}
+              </span>
+            )}
+          </Button>
+          {/* Desktop sign in */}
+          <div className="hidden md:block">
+            <Button variant={"Medium"} color={"Primary"} href="/coming-soon">
+              Sign In
+            </Button>
+          </div>
+          {/* Hamburger (mobile only) */}
+          <div className="md:hidden">
+            <Button
+              variant={"Medium"}
+              color={"Primary"}
+              icon={true}
+              onClick={toggleMenu}
+              aria-label={isOpen ? "Close menu" : "Open menu"}
+              aria-expanded={isOpen}
+              aria-controls="mobile-menu"
+            >
+              {isOpen ? (
+                <X size={20} strokeWidth={1.5} />
+              ) : (
+                <Menu size={20} strokeWidth={1.5} />
+              )}
+            </Button>
+          </div>
+        </div>
       </div>
+      {/* Mobile menu panel */}
+      {isOpen && (
+        <>
+          <div
+            className="md:hidden absolute top-full left-0 w-full h-screen bg-black/40 z-40"
+            onClick={toggleMenu}
+            aria-hidden="true"
+          />
+          <div
+            id="mobile-menu"
+            className="md:hidden absolute top-full left-0 w-full flex flex-col gap-4 px-12 pb-6 bg-stone-50 shadow-sm z-50"
+          >
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={linkClass(link.href)}
+              >
+                {link.label}
+              </Link>
+            ))}
+            <Button variant={"Medium"} color={"Primary"} href="/coming-soon">
+              Sign In
+            </Button>
+          </div>
+        </>
+      )}
     </header>
   );
 }
