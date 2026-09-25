@@ -40,6 +40,7 @@ export type ButtonProps = {
   suffix?: ReactNode;
   children?: ReactNode;
   className?: string;
+  onClick?: () => void;
 };
 
 export default function Button(props: ButtonProps) {
@@ -53,6 +54,7 @@ export default function Button(props: ButtonProps) {
     children,
     href,
     type = "button",
+    onClick,
   } = props;
 
   const variantClass = icon
@@ -82,7 +84,7 @@ export default function Button(props: ButtonProps) {
     );
   }
   return (
-    <button type={type} className={buttonClasses}>
+    <button type={type} className={buttonClasses} onClick={onClick}>
       {content}
     </button>
   );

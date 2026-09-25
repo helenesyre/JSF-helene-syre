@@ -1,7 +1,14 @@
+"use client";
+import { useEffect } from "react";
 import { CreditCardCheck } from "lucide-react";
 import Button from "../../_components/ui/Button";
+import { useCart } from "@/app/_lib/stores";
 
 export default function Success() {
+  const { clearCart } = useCart();
+  useEffect(() => {
+    clearCart();
+  }, [clearCart]);
   return (
     <div className="py-8 px-12 max-w-7xl mx-auto">
       <div className="flex flex-col items-center text-center gap-8 p-14 bg-stone-50 rounded shadow-md">
