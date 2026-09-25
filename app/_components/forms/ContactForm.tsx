@@ -37,7 +37,7 @@ export default function ContactForm() {
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className={inputContainerClass}>
-        <label className={labelClass}>
+        <label htmlFor="nameContact" className={labelClass}>
           Full name<span className={asteriskClass}>*</span>
         </label>
         <input
@@ -57,7 +57,7 @@ export default function ContactForm() {
         )}
       </div>
       <div className={inputContainerClass}>
-        <label className={labelClass}>
+        <label htmlFor="emailContact" className={labelClass}>
           Email<span className={asteriskClass}>*</span>
         </label>
         <input
@@ -77,7 +77,7 @@ export default function ContactForm() {
         )}
       </div>
       <div className={inputContainerClass}>
-        <label className={labelClass}>
+        <label htmlFor="subjectContact" className={labelClass}>
           Subject<span className={asteriskClass}>*</span>
         </label>
         <input
@@ -97,7 +97,7 @@ export default function ContactForm() {
         )}
       </div>
       <div className={inputContainerClass}>
-        <label className={labelClass}>
+        <label htmlFor="messageContact" className={labelClass}>
           Message<span className={asteriskClass}>*</span>
         </label>
         <textarea
