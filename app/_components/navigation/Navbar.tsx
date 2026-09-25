@@ -61,6 +61,7 @@ export default function Navbar() {
             icon={true}
             href="/cart"
             className="relative"
+            aria-label="Shopping cart"
           >
             <ShoppingBag size={20} strokeWidth={1.5} />
             {cartCount > 0 && (

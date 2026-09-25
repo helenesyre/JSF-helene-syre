@@ -45,7 +45,7 @@ export default function ContactForm() {
           id="nameContact"
           {...register("name")}
           aria-invalid={errors.name ? "true" : "false"}
-          aria-describedby="nameError"
+          aria-describedby={errors.name ? "nameError" : undefined}
         />
         {errors.name && (
           <div className={errorContainerClass}>
@@ -65,7 +65,7 @@ export default function ContactForm() {
           id="emailContact"
           {...register("email")}
           aria-invalid={errors.email ? "true" : "false"}
-          aria-describedby="emailError"
+          aria-describedby={errors.email ? "emailError" : undefined}
         />
         {errors.email && (
           <div className={errorContainerClass}>
@@ -85,7 +85,7 @@ export default function ContactForm() {
           id="subjectContact"
           {...register("subject")}
           aria-invalid={errors.subject ? "true" : "false"}
-          aria-describedby="subjectError"
+          aria-describedby={errors.subject ? "subjectError" : undefined}
         />
         {errors.subject && (
           <div className={errorContainerClass}>
@@ -105,7 +105,7 @@ export default function ContactForm() {
           id="messageContact"
           {...register("message")}
           aria-invalid={errors.message ? "true" : "false"}
-          aria-describedby="messageError"
+          aria-describedby={errors.message ? "messageError" : undefined}
         />
         {errors.message && (
           <div className={errorContainerClass}>

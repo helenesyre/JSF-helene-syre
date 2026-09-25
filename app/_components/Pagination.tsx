@@ -21,6 +21,7 @@ export default function Pagination({
         onClick={() => setPage(page - 1)}
         disabled={page <= 1}
         className={page <= 1 ? disabledArrowButtonClass : arrowButtonClass}
+        aria-label="Previous page"
       >
         <ChevronLeft />
       </button>
@@ -30,6 +31,7 @@ export default function Pagination({
             key={i}
             onClick={() => setPage(i + 1)}
             className={page === i + 1 ? activePageButtonClass : pageButtonClass}
+            aria-label={`Page ${i + 1}`}
           >
             {i + 1}
           </button>
@@ -41,6 +43,7 @@ export default function Pagination({
         className={
           page >= pageCount ? disabledArrowButtonClass : arrowButtonClass
         }
+        aria-label="Next page"
       >
         <ChevronRight />
       </button>

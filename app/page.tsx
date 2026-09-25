@@ -71,7 +71,11 @@ export default function Home() {
           <h2 className="mb-4">Our Products</h2>
           <div className="mb-4">
             {/* Search input */}
+            <label htmlFor="search" className="sr-only">
+              Search products
+            </label>
             <input
+              id="search"
               type="text"
               placeholder="Search products..."
               value={userQuery}
