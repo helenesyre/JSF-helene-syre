@@ -17,7 +17,7 @@ export default function ProductCard({
       <a href={`/product/${product.id}`}>
         <div className="relative">
           {/* Image */}
-          <div className="relative aspect-square w-full">
+          <div className="relative w-auto h-72 sm:h-80 md:h-64 lg:h-88">
             <Image
               src={product.image.url}
               alt={product.image.alt ?? product.title}
@@ -63,15 +63,15 @@ export default function ProductCard({
       </a>
       <div className="flex items-center justify-between p-4 border-t border-stone-300">
         {/* Price */}
-        <div className="text-xl font-bold">
+        <div className="text-xl sm:text-lg md:text-xl font-bold">
           {product.discountedPrice !== null &&
           product.discountedPrice < product.price ? (
-            <>
+            <div className="flex flex-row md:flex-col lg:flex-row items-start gap-2 md:gap-0 lg:gap-2">
               <span className=" text-red-900">{product.discountedPrice}kr</span>
-              <span className="text-stone-400 ml-2 line-through">
+              <span className="text-stone-400 line-through">
                 {product.price}kr
               </span>
-            </>
+            </div>
           ) : (
             <span>{product.price}kr</span>
           )}
