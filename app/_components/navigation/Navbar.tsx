@@ -30,7 +30,7 @@ export default function Navbar() {
   }, [products, cartItemCount]);
 
   const linkClass = (href: string) =>
-    pathname === href
+    href !== "/coming-soon" && pathname === href
       ? "font-bold hover:text-red-900 mt-1"
       : "font-medium hover:text-red-900 mt-1";
 
