@@ -8,6 +8,7 @@ import Image from "next/image";
 
 export default function Home() {
   const [productPage, setProductPage] = useState(1);
+  const [userQuery, setUserQuery] = useState("");
   function fetchProducts(limit: number, page: number) {
     return fetch(
       `https://v2.api.noroff.dev/online-shop?limit=${limit}&page=${page}`,
@@ -27,6 +28,11 @@ export default function Home() {
   } = useQuery<ProductResponse>({
     queryKey: ["productData", productPage],
     queryFn: () => fetchProducts(8, productPage),
+  });
+
+  const { data: searchData } = useQuery<ProductResponse>({
+    queryKey: ["productData", productPage],
+    queryFn: () => fetchProducts(50, productPage),
   });
 
   if (isLoading) return <p>Loading...</p>;
@@ -63,29 +69,46 @@ export default function Home() {
         <div className="flex flex-row justify-between items-center">
           {/* Section title */}
           <h2 className="mb-4">Our Products</h2>
-          {/* Search and filter inputs will go here */}
           <div className="mb-4">
             {/* Search input */}
             <input
               type="text"
               placeholder="Search products..."
-              className="border border-stone-300 rounded p-2 w-full"
+              value={userQuery}
+              onChange={(e) => setUserQuery(e.target.value)}
+              className="border border-stone-300 rounded p-2 w-72"
             />
           </div>
         </div>
         {/* Product grid */}
-        <div className="flex flex-col gap-14 items-center">
-          {productData?.data ? (
-            <ProductGrid products={productData.data} />
-          ) : (
-            "No products found"
-          )}
-          <Pagination
-            page={productPage}
-            pageCount={productData.meta.pageCount ?? 1}
-            setPage={setProductPage}
-          />
-        </div>
+        {searchData?.data && userQuery.length > 0 ? (
+          <div className="flex flex-col gap-14 items-center">
+            <ProductGrid
+              products={searchData.data.filter((product) =>
+                product.title.toLowerCase().includes(userQuery.toLowerCase()),
+              )}
+            />
+          </div>
+        ) : (
+          <div className="flex flex-col gap-14 items-center">
+            {productData.data ? (
+              <ProductGrid
+                products={productData.data.filter((product) =>
+                  product.title.toLowerCase().includes(userQuery.toLowerCase()),
+                )}
+              />
+            ) : (
+              <span className="text-stone-500 col-span-full">
+                No products found
+              </span>
+            )}
+            <Pagination
+              page={productPage}
+              pageCount={productData.meta.pageCount ?? 1}
+              setPage={setProductPage}
+            />
+          </div>
+        )}
       </section>
     </div>
   );
