@@ -3,8 +3,8 @@ import Logo from "../ui/Logo";
 
 export default function Footer() {
   return (
-    <footer className="w-full p-12 bg-stone-50 shadow-[0_-2px_4px_rgba(0,0,0,0.05)]">
-      <div className="flex flex-col md:flex-row md:items-center gap-6 justify-between">
+    <footer className="w-full px-6 md:px-12 py-12 bg-stone-50 shadow-[0_-2px_4px_rgba(0,0,0,0.05)]">
+      <div className="flex flex-col md:flex-row items-start md:items-center gap-6 justify-between">
         {/* Footer heading */}
         <h2 className="font-extrabold text-red-900 sr-only">Shopflow footer</h2>
         <Logo />

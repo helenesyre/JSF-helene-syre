@@ -7,7 +7,7 @@ export default function BreadCrumbs({ crumbs }: { crumbs: BreadCrumb[] }) {
   return (
     <nav
       aria-label="Breadcrumb"
-      className="relative flex mb-4 font-medium top-12 left-12"
+      className="absolute flex mb-4 font-medium top-6 left-6 md:top-12 md:left-12"
     >
       {crumbs.length > 0 &&
         crumbs.map((crumb, index) => {

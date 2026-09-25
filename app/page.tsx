@@ -43,7 +43,7 @@ export default function Home() {
 
   return (
     <div>
-      <section className="relative h-96 p-12">
+      <section className="relative h-96 p-6 md:p-12">
         {/* Hero image */}
         <Image
           src="/images/home-hero.jpg"
@@ -54,7 +54,7 @@ export default function Home() {
         />
         <div className="absolute inset-0 bg-stone-900 opacity-80"></div>
         {/* Hero title and description */}
-        <div className="absolute inset-0 flex flex-col gap-2 justify-center items-center text-center">
+        <div className="absolute inset-0 flex flex-col gap-2 justify-center items-center text-center px-12 ">
           <h1 className="relative text-4xl font-bold text-stone-50">
             Welcome to Our Online Shop
           </h1>
@@ -66,7 +66,7 @@ export default function Home() {
       </section>
 
       <section className="p-12">
-        <div className="flex flex-row justify-between items-center">
+        <div className="flex flex-col md:flex-row justify-between md:items-center">
           {/* Section title */}
           <h2 className="mb-4">Our Products</h2>
           <div className="mb-4">
@@ -76,7 +76,7 @@ export default function Home() {
               placeholder="Search products..."
               value={userQuery}
               onChange={(e) => setUserQuery(e.target.value)}
-              className="border border-stone-300 rounded p-2 w-72"
+              className="border border-stone-300 rounded p-2 w-full md:w-72"
             />
           </div>
         </div>

@@ -52,23 +52,22 @@ export default function Product() {
   ];
 
   return (
-    <div className="grid grid-cols-2 relative">
+    <div className="grid grid-cols-1 lg:grid-cols-2 relative">
       {/* Image Section */}
-      <section className="relative aspect-square w-full">
+      <section className="relative w-full h-80 lg:h-screen">
         {/* Product Image */}
         <Image
           src={product.image.url}
           alt={product.image.alt ?? product.title}
           fill
-          sizes="(max-width: 639px) 100vw, (max-width: 767px) 50vw, 33vw"
+          sizes="(max-width: 767px) 100vw, 50vw"
           className="object-cover"
-          loading="lazy"
         />
         {/* Breadcrumbs */}
         <BreadCrumbs crumbs={breadCrumbs} />
       </section>
       {/* Product Details Section */}
-      <section className="min-w-0 px-32 py-12">
+      <section className="min-w-0 px-6 md:px-12 2xl:px-32 py-12">
         <div className="flex flex-col gap-1 mb-3">
           {/* Sales tag */}
           {product.discountedPrice !== null &&
@@ -104,12 +103,12 @@ export default function Product() {
             )}
           </div>
         </div>
-        <div className="flex flex-row gap-4 mb-6">
+        <div className="flex flex-col md:flex-row gap-1 md:gap-4 mb-6">
           {/* Tags */}
           <span className="uppercase text-red-900 font-semibold">
             {product.tags.join(" & ")}
           </span>
-          <p className="text-stone-300 font-semibold">|</p>
+          <p className="hidden md:block text-stone-300 font-semibold">|</p>
           {/* Rating */}
           <div className="flex items-center gap-2">
             <StarRating rating={product.rating} size={20} />
@@ -129,8 +128,11 @@ export default function Product() {
           <ReviewList reviews={product.reviews} />
         </div>
       </section>
-      <AddToCartCard product={product} />
-      <section className="col-span-2">
+      {/* Add to cart */}
+      <div className="sticky bottom-8 col-span-1 lg:col-span-2">
+        <AddToCartCard product={product} />
+      </div>
+      <section className="col-span-1 lg:col-span-2">
         <CallToAction />
       </section>
     </div>

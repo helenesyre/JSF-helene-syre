@@ -10,7 +10,7 @@ export default function Success() {
     clearCart();
   }, [clearCart]);
   return (
-    <div className="py-8 px-12 max-w-7xl mx-auto">
+    <div className="py-8 px-6 md:px-12 max-w-7xl mx-auto">
       <div className="flex flex-col items-center text-center gap-8 p-14 bg-stone-50 rounded shadow-md">
         <CreditCardCheck
           className="bg-emerald-100 text-emerald-600 p-4 rounded-full"

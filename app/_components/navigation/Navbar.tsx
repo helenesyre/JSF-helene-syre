@@ -36,7 +36,7 @@ export default function Navbar() {
 
   return (
     <header className="relative w-full flex flex-col bg-stone-50 shadow-sm">
-      <div className="w-full flex items-center gap-4 px-12 py-5 justify-between">
+      <div className="w-full flex items-center gap-4 px-6 md:px-12 py-5 justify-between">
         <nav className="flex items-center gap-4">
           <Link href={"/"}>
             <Logo />
@@ -105,7 +105,7 @@ export default function Navbar() {
           />
           <div
             id="mobile-menu"
-            className="md:hidden absolute top-full left-0 w-full flex flex-col gap-4 px-12 pb-6 bg-stone-50 shadow-sm z-50"
+            className="md:hidden absolute top-full left-0 w-full flex flex-col gap-4 px-6 pb-6 bg-stone-50 shadow-sm z-50"
           >
             {navLinks.map((link) => (
               <Link
