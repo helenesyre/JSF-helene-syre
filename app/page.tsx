@@ -65,7 +65,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="p-12">
+      <section className="px-6 py-12 md:px-12">
         <div className="flex flex-col md:flex-row justify-between md:items-center">
           {/* Section title */}
           <h2 className="mb-4">Our Products</h2>

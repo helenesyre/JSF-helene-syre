@@ -2,7 +2,7 @@ import Button from "../ui/Button";
 
 export default function CallToAction() {
   return (
-    <section className="flex flex-col items-center justify-center text-center h-72 w-full bg-red-900 p-8">
+    <section className="flex flex-col items-center justify-center text-center h-72 w-full bg-red-900 px-6 py-8 md:px-12">
       {/* CTA */}
       <h2 className="text-stone-50 mb-2">
         Do you have questions about this product?

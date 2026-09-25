@@ -16,6 +16,7 @@ export default function ProductCartItem({
 }) {
   return (
     <div className="flex flex-row items-center gap-4 p-4 bg-stone-50 shadow-md rounded-lg">
+      {/* Product image */}
       <div className="w-20 h-20 relative">
         <Image
           src={product.image.url}
@@ -25,10 +26,12 @@ export default function ProductCartItem({
           className="object-cover"
         />
       </div>
+      {/* Product details */}
       <div className="flex-1">
         <h3>{product.title}</h3>
         <p>{product.price.toFixed(2)}kr</p>
       </div>
+      {/* Product quantity controls */}
       <div className="flex items-center gap-2">
         <button onClick={onDecrease} className="px-2 py-1 bg-gray-300">
           -
@@ -38,6 +41,7 @@ export default function ProductCartItem({
           +
         </button>
       </div>
+      {/* Remove product button */}
       <button onClick={onRemove}>
         <Trash
           size={20}
