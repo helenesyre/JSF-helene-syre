@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Inter, Raleway } from "next/font/google";
 import "./globals.css";
-import Link from "next/link";
 import { Providers } from "./providers";
 import Navbar from "./_components/navigation/Navbar";
+import Footer from "./_components/footer/Footer";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -34,73 +34,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <Providers>{children}</Providers>
         </main>
         {/* Footer */}
-        <footer className="w-full p-12 bg-stone-50 shadow-[0_-2px_4px_rgba(0,0,0,0.05)]">
-          <div className="flex flex-row items-center justify-between">
-            {/* Footer heading */}
-            <h2 className="font-extrabold text-red-900">Shopflow</h2>
-            {/* Footer navigation links */}
-            <ul className="flex flex-row gap-4">
-              <li>
-                <Link
-                  href={"/coming-soon"}
-                  className="font-medium hover:text-red-900"
-                >
-                  Shop
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href={"/contact"}
-                  className="font-medium hover:text-red-900"
-                >
-                  Contact
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href={"/coming-soon"}
-                  className="font-medium hover:text-red-900"
-                >
-                  Term of Service
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href={"/coming-soon"}
-                  className="font-medium hover:text-red-900"
-                >
-                  Cookie Policy
-                </Link>
-              </li>
-            </ul>
-          </div>
-          <hr className="mt-8 mb-4 text-stone-300" />
-          <div className="flex flex-row gap-4 justify-between">
-            {/* Social media links */}
-            <ul className="flex flex-row gap-4">
-              <li>
-                <Link
-                  href={"https://facebook.com"}
-                  className="hover:text-red-900"
-                >
-                  Facebook
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href={"https://instagram.com"}
-                  className="hover:text-red-900"
-                >
-                  Instagram
-                </Link>
-              </li>
-            </ul>
-            {/* Copyright information */}
-            <p>
-              &copy;{new Date().getFullYear()} Shopflow. All rights reserved.
-            </p>
-          </div>
-        </footer>
+        <Footer />
       </body>
     </html>
   );
