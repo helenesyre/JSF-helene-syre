@@ -62,6 +62,10 @@ export const useCart = create<Cart>()(
               stateProduct.id === product.id
                 ? (() => {
                     if (stateProduct.quantity - quantity <= 0) {
+                      useToast.getState().addMessage({
+                        message: `${stateProduct.title} removed from cart`,
+                        duration: 3000,
+                      });
                       return null;
                     }
                     return {
@@ -74,11 +78,17 @@ export const useCart = create<Cart>()(
             .filter((product) => product !== null),
         })),
       removeProduct: (productToRemove: Product) =>
-        set((state) => ({
-          products: state.products.filter(
-            (product) => product.id !== productToRemove.id,
-          ),
-        })),
+        (() => {
+          useToast.getState().addMessage({
+            message: `${productToRemove.title} removed from cart`,
+            duration: 3000,
+          });
+          set((state) => ({
+            products: state.products.filter(
+              (product) => product.id !== productToRemove.id,
+            ),
+          }));
+        })(),
       updateProducts: (newProducts: CartProduct[]) =>
         set({ products: newProducts }),
       subtotal: () =>
