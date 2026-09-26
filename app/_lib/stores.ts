@@ -30,6 +30,11 @@ export const useCart = create<Cart>()(
         get().products.reduce((count, product) => count + product.quantity, 0),
       addProduct: (newProduct: Product, quantity: number = 1) => {
         if (quantity <= 0) return;
+        // toast
+        useToast.getState().addMessage({
+          message: `${newProduct.title} added to cart`,
+          duration: 3000,
+        });
         set((state) => ({
           products: state.products.some(
             (product) => product.id === newProduct.id,
@@ -93,3 +98,30 @@ export const useCart = create<Cart>()(
     },
   ),
 );
+
+export type ToastMessage = {
+  message: string;
+  duration: number;
+};
+
+export const useToast = create<{
+  messages: ToastMessage[];
+  addMessage: (message: ToastMessage) => void;
+  removeMessage: (index: number) => void;
+  clearMessages: () => void;
+}>()((set, get) => ({
+  messages: [],
+  addMessage: (message: ToastMessage) => {
+    set((state) => ({
+      messages: [...state.messages, message],
+    }));
+  },
+  removeMessage: (index: number) => {
+    set((state) => ({
+      messages: state.messages.filter((_, i) => i !== index),
+    }));
+  },
+  clearMessages: () => {
+    set({ messages: [] });
+  },
+}));
