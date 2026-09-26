@@ -1,8 +1,14 @@
 # JSF Helene Syre Project
 
-## Overview
+Shopflow is an online e-commerce store built with [Noroff's Online Shop API](https://docs.noroff.dev/docs/v2/basic/online-shop).
 
-This is a Noroff project using the [Noroff shop api](https://docs.noroff.dev/docs/v2/basic/online-shop).
+**Desktop:** ![Homepage Desktop](/public/images/shopflow-desktop.jpg)
+
+Project Link: [https://jsf-helene-syre.vercel.app/](https://jsf-helene-syre.vercel.app/)
+
+## Description
+
+This project is a course assignment for Noroff's JavaScript Frameworks (JSF) course. It showcases the implementation of an online shop using modern web development technologies. The e-commerce site features product listings, a contact form, a shopping cart and a checkout process.
 
 ## Getting Started
 
@@ -22,7 +28,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load custom fonts from Google Fonts.
 
 ## Tech Stack
 
@@ -68,3 +74,9 @@ README.md               # Project documentation
 ## Deploy
 
 The app is deployed on Vercel. You can find the deployment instructions and more details in the [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying).
+
+---
+
+## Contact
+
+Helene Syre - [@syre_design](https://www.instagram.com/syre_design/) - syrehelene@gmail.com - [Linkedin](https://www.linkedin.com/in/helene-syre/) - [Portfolio](https://helenesyre.github.io/portfolio/#/)
