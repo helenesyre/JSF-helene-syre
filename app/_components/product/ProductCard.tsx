@@ -1,9 +1,11 @@
+"use client";
 import { Product } from "@/app/_lib/types";
 import Image from "next/image";
 import { BadgePercent, ShoppingBag } from "lucide-react";
 import StarRating from "@/app/_components/ui/StarRating";
 import Tag from "@/app/_components/ui/Tags";
 import { calculateDiscountPercentage } from "@/app/_lib/utils";
+import { useCart } from "@/app/_lib/stores";
 
 export default function ProductCard({
   product,
@@ -12,6 +14,7 @@ export default function ProductCard({
   product: Product;
   priority?: boolean;
 }) {
+  const { addProduct } = useCart();
   return (
     <div className="flex flex-col justify-between rounded-b-md bg-stone-50 shadow-sm hover:shadow-md hover:scale-102 duration-300">
       <a href={`/product/${product.id}`}>
@@ -77,7 +80,10 @@ export default function ProductCard({
           )}
         </div>
         {/* Cart button */}
-        <button className="group p-1.5 rounded text-stone-800 hover:bg-red-900 hover:text-stone-50 duration-300 cursor-pointer">
+        <button
+          className="group p-1.5 rounded text-stone-800 hover:bg-red-900 hover:text-stone-50 duration-300 cursor-pointer"
+          onClick={() => addProduct(product)}
+        >
           <ShoppingBag
             size={24}
             strokeWidth={1.5}
