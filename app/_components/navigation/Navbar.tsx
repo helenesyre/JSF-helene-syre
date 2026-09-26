@@ -7,28 +7,35 @@ import Button from "../ui/Button";
 import { X, Menu, ShoppingBag } from "lucide-react";
 import { useCart } from "@/app/_lib/stores";
 
+// Navigation links for the navbar
 const navLinks = [
   { label: "Home", href: "/" },
   { label: "Shop", href: "/coming-soon" },
   { label: "Contact", href: "/contact" },
 ];
 
+// Navbar component
 export default function Navbar() {
+  // Get the current pathname from the Next.js router
   const pathname = usePathname();
-
+  // State to track if the mobile menu is open
   const [isOpen, setIsOpen] = useState<boolean>(false);
+  // Function to toggle the mobile menu
   const toggleMenu = () => setIsOpen(!isOpen);
 
+  // Close the mobile menu when the pathname changes
   useEffect(() => {
     setIsOpen(false);
   }, [pathname]);
 
+  // Subscribe to the cart store to get the current cart item count
   const cartItemCount = useSyncExternalStore(
     useCart.subscribe,
     () => useCart.getState().cartItemCount(),
     () => 0,
   );
 
+  // Determine the CSS class for each navigation link based on the current pathname
   const linkClass = (href: string) =>
     href !== "/coming-soon" && pathname === href
       ? "font-bold hover:text-red-900 mt-1"

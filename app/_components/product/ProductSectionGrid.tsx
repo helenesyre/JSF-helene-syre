@@ -6,14 +6,23 @@ import { ProductResponse } from "@/app/_lib/types";
 import { useQuery } from "@tanstack/react-query";
 import ProductGridSkeleton from "../skeleton/ProductGridSkeleton";
 
+// Product section grid component
 export default function ProductSectionGrid({
   userQuery,
 }: {
   userQuery: string;
 }) {
+  // State to track the current product page
   const [productPage, setProductPage] = useState(1);
+  // Number of products to display per page
   const productsPerPage = 8;
 
+  /**
+   * Fetches products from the API based on the specified limit and page.
+   * @param limit Number of products to fetch per page
+   * @param page Current page number
+   * @returns A promise resolving to the fetched product data
+   */
   function fetchProducts(limit: number, page: number) {
     return fetch(
       `https://v2.api.noroff.dev/online-shop?limit=${limit}&page=${page}`,
@@ -26,6 +35,7 @@ export default function ProductSectionGrid({
     ).then((res) => res.json());
   }
 
+  // Fetch product data using TanStack Query
   const {
     isLoading,
     error,
@@ -35,12 +45,13 @@ export default function ProductSectionGrid({
     queryFn: () => fetchProducts(productsPerPage, productPage),
   });
 
+  // Fetch all products for search functionality
   const { data: searchData } = useQuery<ProductResponse>({
-    queryKey: ["productData", productPage],
+    queryKey: ["searchData", productPage],
     queryFn: () => fetchProducts(50, productPage),
   });
 
-  // skeleton loader for loading state
+  // Skeleton loader for loading state
   if (isLoading)
     return <ProductGridSkeleton productsPerPage={productsPerPage} />;
 
@@ -61,6 +72,7 @@ export default function ProductSectionGrid({
 
   return (
     <div className="flex flex-col gap-14 items-center">
+      {/* Render the product grid if product data is available */}
       {productData.data ? (
         <ProductGrid
           products={productData.data.filter((product) =>
@@ -70,6 +82,7 @@ export default function ProductSectionGrid({
       ) : (
         <span className="text-stone-500 col-span-full">No products found</span>
       )}
+      {/* Render the pagination controls */}
       <Pagination
         page={productPage}
         pageCount={productData.meta.pageCount ?? 1}

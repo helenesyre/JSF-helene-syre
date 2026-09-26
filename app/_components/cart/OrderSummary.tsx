@@ -5,6 +5,7 @@ import { useCart } from "@/app/_lib/stores";
 import { useSyncExternalStore } from "react";
 
 export default function OrderSummary() {
+  // Fetch data from the cart store
   const subtotal = useSyncExternalStore(
     useCart.subscribe,
     () => useCart.getState().subtotal(),

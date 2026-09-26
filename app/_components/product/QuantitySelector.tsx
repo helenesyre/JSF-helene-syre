@@ -1,5 +1,6 @@
 import { SquareMinus, SquarePlus } from "lucide-react";
 
+// Quantity selector component
 export default function QuantitySelector({
   quantity,
   setQuantity = () => {},

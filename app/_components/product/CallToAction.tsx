@@ -1,5 +1,6 @@
 import Button from "../ui/Button";
 
+// Call to action component
 export default function CallToAction() {
   return (
     <section className="flex flex-col items-center justify-center text-center h-72 w-full bg-red-900 px-6 py-8 md:px-12">

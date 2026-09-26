@@ -1,6 +1,7 @@
 "use client";
 import { useEffect } from "react";
 
+// Toast component
 export default function Toast({
   message,
   duration,
@@ -10,6 +11,7 @@ export default function Toast({
   duration: number;
   onClose: () => void;
 }) {
+  // Set up a timer to automatically close the toast after the specified duration
   useEffect(() => {
     const timer = setTimeout(onClose, duration);
     return () => clearTimeout(timer);

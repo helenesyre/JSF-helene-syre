@@ -1,5 +1,6 @@
 import Button from "../_components/ui/Button";
 
+// Coming Soon page
 export default function ComingSoon() {
   return (
     <div className="flex flex-col items-center justify-center text-center min-h-[calc(100vh-100px)] gap-4 px-4">

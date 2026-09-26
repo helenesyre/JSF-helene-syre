@@ -1,6 +1,7 @@
 import Image from "next/image";
 import ProductSection from "./_components/product/ProductSection";
 
+// Home page
 export default function Home() {
   return (
     <div>
@@ -25,6 +26,7 @@ export default function Home() {
           </p>
         </div>
       </section>
+      {/* Product section */}
       <ProductSection />
     </div>
   );

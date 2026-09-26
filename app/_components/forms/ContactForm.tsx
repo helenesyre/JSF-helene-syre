@@ -6,6 +6,7 @@ import { ContactFormSchema } from "../../_lib/schema";
 import { CircleAlert } from "lucide-react";
 import Button from "../ui/Button";
 
+// Contact form data type definition
 type contactFormData = {
   name: string;
   email: string;
@@ -13,6 +14,7 @@ type contactFormData = {
   message: string;
 };
 
+// Contact form input and error styles
 const inputContainerClass = "mb-4";
 const labelClass = "font-semibold mb-1";
 const asteriskClass = "text-red-600 ml-0.5";
@@ -21,8 +23,11 @@ const inputClass =
 const errorContainerClass = "flex items-center space-x-1.5 text-red-600";
 const errorClass = "text-red-600 font-medium text-sm";
 
+// Contact form component
 export default function ContactForm() {
+  // State to track if the form has been submitted successfully
   const [submitted, setSubmitted] = useState(false);
+  // Initialize the form using react-hook-form with zod validation
   const {
     register,
     handleSubmit,
@@ -32,6 +37,7 @@ export default function ContactForm() {
     mode: "onBlur",
   });
 
+  // Handle form submission and reset the form on success
   const onSubmit: SubmitHandler<contactFormData> = (data, event) => {
     event?.target.reset();
     setSubmitted(true);
@@ -39,12 +45,15 @@ export default function ContactForm() {
 
   return (
     <div>
+      {/* Display success message if the form has been submitted successfully */}
       {submitted && (
         <div className="mb-4 bg-emerald-50 border border-emerald-200 text-emerald-800 font-medium rounded p-2">
           Your message has been successfully sent!
         </div>
       )}
+      {/* Contact form fields and submit button */}
       <form onSubmit={handleSubmit(onSubmit)}>
+        {/* Full name field */}
         <div className={inputContainerClass}>
           <label htmlFor="nameContact" className={labelClass}>
             Full name<span className={asteriskClass}>*</span>
@@ -65,6 +74,7 @@ export default function ContactForm() {
             </div>
           )}
         </div>
+        {/* Email field */}
         <div className={inputContainerClass}>
           <label htmlFor="emailContact" className={labelClass}>
             Email<span className={asteriskClass}>*</span>
@@ -85,6 +95,7 @@ export default function ContactForm() {
             </div>
           )}
         </div>
+        {/* Subject field */}
         <div className={inputContainerClass}>
           <label htmlFor="subjectContact" className={labelClass}>
             Subject<span className={asteriskClass}>*</span>
@@ -105,6 +116,7 @@ export default function ContactForm() {
             </div>
           )}
         </div>
+        {/* Message field */}
         <div className={inputContainerClass}>
           <label htmlFor="messageContact" className={labelClass}>
             Message<span className={asteriskClass}>*</span>

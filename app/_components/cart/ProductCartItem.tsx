@@ -1,9 +1,9 @@
 import { CartProduct } from "@/app/_lib/stores";
 import { Trash } from "lucide-react";
-import { useState } from "react";
 import Image from "next/image";
 import QuantitySelector from "../product/QuantitySelector";
 
+// ProductCartItem component renders a single product item in the cart with its details, quantity controls, and remove button.
 export default function ProductCartItem({
   product,
   onRemove,

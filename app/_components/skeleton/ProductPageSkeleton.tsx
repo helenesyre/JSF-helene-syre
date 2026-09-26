@@ -1,3 +1,4 @@
+// Product page skeleton component
 export default function ProductPageSkeleton() {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 relative">

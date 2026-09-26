@@ -1,6 +1,7 @@
 import { BreadCrumb } from "@/app/_lib/types";
 import Link from "next/link";
 
+// Breadcrumbs component
 export default function BreadCrumbs({
   crumbs,
   dark,
@@ -8,6 +9,7 @@ export default function BreadCrumbs({
   crumbs: BreadCrumb[];
   dark?: boolean;
 }) {
+  // Determine the color of the breadcrumb text based on the dark prop
   const breadcrumbColor = dark ? "text-stone-100" : "text-stone-900";
 
   return (
@@ -15,6 +17,7 @@ export default function BreadCrumbs({
       aria-label="Breadcrumb"
       className="absolute flex mb-4 font-medium top-6 left-6 md:top-12 md:left-12"
     >
+      {/* Render the breadcrumb items */}
       {crumbs.length > 0 &&
         crumbs.map((crumb, index) => {
           return (

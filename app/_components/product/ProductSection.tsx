@@ -2,7 +2,9 @@
 import { useState } from "react";
 import ProductSectionGrid from "./ProductSectionGrid";
 
+// Product section component
 export default function ProductSection() {
+  // State to track the user's search query
   const [userQuery, setUserQuery] = useState("");
   return (
     <section className="px-6 py-12 md:px-12">
@@ -24,6 +26,7 @@ export default function ProductSection() {
           />
         </div>
       </div>
+      {/* Product grid */}
       <ProductSectionGrid userQuery={userQuery} />
     </section>
   );

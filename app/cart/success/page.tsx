@@ -4,8 +4,11 @@ import { CreditCardCheck } from "lucide-react";
 import Button from "../../_components/ui/Button";
 import { useCart } from "@/app/_lib/stores";
 
+// Success page
 export default function Success() {
+  // Access the clearCart function from the cart store
   const { clearCart } = useCart();
+  // Clear the cart when the success page is loaded
   useEffect(() => {
     clearCart();
   }, [clearCart]);

@@ -1,5 +1,6 @@
 import ContactForm from "../_components/forms/ContactForm";
 
+// Contact page
 export default function Contact() {
   return (
     <div className="py-8 px-6 md:px-12 max-w-7xl mx-auto">

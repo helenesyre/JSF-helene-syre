@@ -6,8 +6,9 @@ import { useState } from "react";
 import { useCart } from "@/app/_lib/stores";
 
 export default function AddToCartCard({ product }: { product: Product }) {
+  // State to track the selected quantity of the product
   const [quantity, setQuantity] = useState<number>(1);
-
+  // Get the addProduct function from the cart store
   const { addProduct } = useCart();
 
   return (
@@ -32,6 +33,7 @@ export default function AddToCartCard({ product }: { product: Product }) {
             {product.tags.join(" & ")}
           </span>
           <div className="block md:hidden">
+            {/* Quantity selector for mobile view */}
             <QuantitySelector quantity={quantity} setQuantity={setQuantity} />
           </div>
         </div>

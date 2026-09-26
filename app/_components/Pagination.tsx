@@ -1,5 +1,6 @@
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
+// Pagination component
 export default function Pagination({
   page,
   pageCount,
@@ -17,6 +18,7 @@ export default function Pagination({
   const activePageButtonClass = `${baseButtonClass} cursor-pointer border-stone-800 bg-stone-800 text-white`;
   return (
     <div className="flex items-center gap-4 justify-center">
+      {/* Previous page button */}
       <button
         onClick={() => setPage(page - 1)}
         disabled={page <= 1}
@@ -25,6 +27,7 @@ export default function Pagination({
       >
         <ChevronLeft />
       </button>
+      {/* Page number buttons */}
       <span className="flex items-center gap-2">
         {Array.from({ length: pageCount }, (_, i) => (
           <button
@@ -37,6 +40,7 @@ export default function Pagination({
           </button>
         ))}
       </span>
+      {/* Next page button */}
       <button
         onClick={() => setPage(page + 1)}
         disabled={page >= pageCount}

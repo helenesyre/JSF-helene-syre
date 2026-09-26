@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Logo from "../ui/Logo";
 
+// Footer component for the application
 export default function Footer() {
   return (
     <footer className="w-full px-6 md:px-12 py-12 bg-stone-50 shadow-[0_-2px_4px_rgba(0,0,0,0.05)]">

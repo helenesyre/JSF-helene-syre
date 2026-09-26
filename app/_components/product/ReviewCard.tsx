@@ -2,6 +2,7 @@ import { ProductReview } from "@/app/_lib/types";
 import Avatar from "../ui/Avatar";
 import StarRating from "@/app/_components/ui/StarRating";
 
+// Review card component
 export default function ReviewCard({ review }: { review: ProductReview }) {
   //First letter of first and last name
   const avatarInitials = review.username

@@ -7,6 +7,7 @@ import Tag from "@/app/_components/ui/Tags";
 import { calculateDiscountPercentage } from "@/app/_lib/utils";
 import { useCart } from "@/app/_lib/stores";
 
+// Product card component
 export default function ProductCard({
   product,
   priority = false,
@@ -14,6 +15,7 @@ export default function ProductCard({
   product: Product;
   priority?: boolean;
 }) {
+  // Get the addProduct function from the cart store
   const { addProduct } = useCart();
   return (
     <div className="flex flex-col justify-between rounded-b-md bg-stone-50 shadow-sm hover:shadow-md hover:scale-102 duration-300">

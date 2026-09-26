@@ -14,15 +14,20 @@ import Tag from "@/app/_components/ui/Tags";
 import { calculateDiscountPercentage } from "@/app/_lib/utils";
 import CallToAction from "@/app/_components/product/CallToAction";
 
+// Product page
 export default function Product() {
+  // Get the product ID from the URL parameters
   const params = useParams();
+  // Fetch the product details using the product ID
   const productId = params.product_id as string;
+  // List of product IDs that should have a light breadcrumb text color
   const darkIds = [
     "83111322-05a9-4a93-bc81-7d6b58f1a707",
     "f6712e3b-8050-4841-bd64-f332a48f7566",
     "f5d453d1-e811-4225-81ac-cee54ef0384b",
   ];
 
+  // Function to fetch product details by ID
   function fetchProductById(productId: string) {
     return fetch(`https://v2.api.noroff.dev/online-shop/${productId}`, {
       method: "GET",
@@ -31,7 +36,7 @@ export default function Product() {
       },
     }).then((res) => res.json());
   }
-
+  // Use TanStack Query to fetch product details
   const {
     isLoading,
     error,
@@ -41,14 +46,17 @@ export default function Product() {
     queryFn: () => fetchProductById(productId || ""),
   });
 
+  // Handle loading, error, and empty states
   if (isLoading) return <ProductPageSkeleton />;
 
   if (error) return <p>Error loading product</p>;
 
   if (!productResponse) return <p>Product not found</p>;
 
+  // Extract the product data from the response
   const product = productResponse.data;
 
+  // Prepare the breadcrumb data for the product page
   const breadCrumbs: BreadCrumb[] = [
     {
       label: <House />,

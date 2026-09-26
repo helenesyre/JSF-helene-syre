@@ -1,3 +1,4 @@
+// Product grid skeleton component
 export default function ProductGridSkeleton({
   productsPerPage = 8,
 }: {
@@ -5,6 +6,7 @@ export default function ProductGridSkeleton({
 }) {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6">
+      {/* Render the skeleton placeholders for the product grid */}
       {Array.from({ length: productsPerPage }).map((_, index) => (
         <div
           key={index}
