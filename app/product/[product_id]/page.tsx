@@ -1,4 +1,5 @@
 "use client";
+import ProductPageSkeleton from "@/app/_components/skeleton/ProductPageSkeleton";
 import Image from "next/image";
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "next/navigation";
@@ -35,7 +36,7 @@ export default function Product() {
     queryFn: () => fetchProductById(productId || ""),
   });
 
-  if (isLoading) return <p>Loading...</p>;
+  if (isLoading) return <ProductPageSkeleton />;
 
   if (error) return <p>Error loading product</p>;
 
