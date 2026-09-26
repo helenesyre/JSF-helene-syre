@@ -1,8 +1,14 @@
 import { BreadCrumb } from "@/app/_lib/types";
 import Link from "next/link";
 
-export default function BreadCrumbs({ crumbs }: { crumbs: BreadCrumb[] }) {
-  const breadcrumbColor = "text-stone-900";
+export default function BreadCrumbs({
+  crumbs,
+  dark,
+}: {
+  crumbs: BreadCrumb[];
+  dark?: boolean;
+}) {
+  const breadcrumbColor = dark ? "text-stone-100" : "text-stone-900";
 
   return (
     <nav

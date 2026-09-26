@@ -17,6 +17,11 @@ import CallToAction from "@/app/_components/product/CallToAction";
 export default function Product() {
   const params = useParams();
   const productId = params.product_id as string;
+  const darkIds = [
+    "83111322-05a9-4a93-bc81-7d6b58f1a707",
+    "f6712e3b-8050-4841-bd64-f332a48f7566",
+    "f5d453d1-e811-4225-81ac-cee54ef0384b",
+  ];
 
   function fetchProductById(productId: string) {
     return fetch(`https://v2.api.noroff.dev/online-shop/${productId}`, {
@@ -65,7 +70,7 @@ export default function Product() {
           className="object-cover"
         />
         {/* Breadcrumbs */}
-        <BreadCrumbs crumbs={breadCrumbs} />
+        <BreadCrumbs crumbs={breadCrumbs} dark={darkIds.includes(productId)} />
       </section>
       {/* Product Details Section */}
       <section className="min-w-0 px-6 md:px-12 2xl:px-32 py-12">
