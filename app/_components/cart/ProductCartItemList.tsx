@@ -1,19 +1,32 @@
 "use client";
 
-import { Cart, useCart } from "@/app/_lib/stores";
+import { useCart } from "@/app/_lib/stores";
 import ProductCartItem from "./ProductCartItem";
+import { useSyncExternalStore } from "react";
 
 export default function ProductCartItemList() {
-  const { products, cartItemCount, removeProduct } = useCart();
-  const hasItems = cartItemCount() > 0;
+  const { removeProduct } = useCart();
+  const products = useSyncExternalStore(
+    useCart.subscribe,
+    () => useCart.getState().products,
+    () => null,
+  );
 
-  if (!hasItems) {
+  const cartItemCount = useSyncExternalStore(
+    useCart.subscribe,
+    () => useCart.getState().cartItemCount(),
+    () => 0,
+  );
+
+  const hasItems = cartItemCount > 0;
+
+  if (!products || !hasItems) {
     return <p>Your cart is empty.</p>;
   }
 
   return (
     <section className="flex flex-col gap-4">
-      {products.map((product) => (
+      {products?.map((product) => (
         <ProductCartItem
           key={product.id}
           product={product}

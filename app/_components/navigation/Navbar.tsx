@@ -1,11 +1,11 @@
 "use client";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import Logo from "../ui/Logo";
 import Button from "../ui/Button";
 import { X, Menu, ShoppingBag } from "lucide-react";
-import { useCart } from "@/app/_lib/stores";
+import { Cart, useCart } from "@/app/_lib/stores";
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -23,11 +23,11 @@ export default function Navbar() {
     setIsOpen(false);
   }, [pathname]);
 
-  const [cartCount, setCartCount] = useState<number>(0);
-  const { cartItemCount, products } = useCart();
-  useEffect(() => {
-    setCartCount(cartItemCount());
-  }, [products, cartItemCount]);
+  const cartItemCount = useSyncExternalStore(
+    useCart.subscribe,
+    () => useCart.getState().cartItemCount(),
+    () => 0,
+  );
 
   const linkClass = (href: string) =>
     href !== "/coming-soon" && pathname === href
@@ -64,9 +64,9 @@ export default function Navbar() {
             aria-label="Shopping cart"
           >
             <ShoppingBag size={20} strokeWidth={1.5} />
-            {cartCount > 0 && (
+            {cartItemCount > 0 && (
               <span className="absolute -top-1 -right-1 bg-stone-800 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
-                {cartCount}
+                {cartItemCount}
               </span>
             )}
           </Button>

@@ -7,7 +7,7 @@ export type CartProduct = Product & {
   quantity: number;
 };
 
-export interface Cart {
+export type Cart = {
   products: CartProduct[];
   cartItemCount: () => number;
   addProduct: (newProduct: Product, quantity?: number) => void;
@@ -20,7 +20,7 @@ export interface Cart {
   shipping: () => number;
   tax: number;
   total: () => number;
-}
+};
 
 export const useCart = create<Cart>()(
   persist(
