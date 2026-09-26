@@ -1,5 +1,6 @@
 "use client";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ContactFormSchema } from "../../_lib/schema";
 import { CircleAlert } from "lucide-react";
@@ -21,6 +22,7 @@ const errorContainerClass = "flex items-center space-x-1.5 text-red-600";
 const errorClass = "text-red-600 font-medium text-sm";
 
 export default function ContactForm() {
+  const [submitted, setSubmitted] = useState(false);
   const {
     register,
     handleSubmit,
@@ -31,8 +33,12 @@ export default function ContactForm() {
   });
 
   const onSubmit: SubmitHandler<contactFormData> = (data) => {
-    console.log(data);
+    setSubmitted(true);
   };
+
+  if (submitted) {
+    return <p>Thank you for your message!</p>;
+  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
