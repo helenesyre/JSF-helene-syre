@@ -18,15 +18,17 @@ export default function ProductCartItem({
   return (
     <div className="flex flex-row items-center gap-4 p-4 bg-stone-50 shadow-md rounded-lg">
       {/* Product image */}
-      <div className="w-20 h-20 relative">
-        <Image
-          src={product.image.url}
-          alt={product.image.alt ?? product.title}
-          fill
-          sizes="(max-width: 639px) 100vw, (max-width: 767px) 50vw, 33vw"
-          className="object-cover"
-        />
-      </div>
+      <a href={`/product/${product.id}`} className="w-20 h-20 relative">
+        <div className="w-20 h-20 relative">
+          <Image
+            src={product.image.url}
+            alt={product.image.alt ?? product.title}
+            fill
+            sizes="(max-width: 639px) 100vw, (max-width: 767px) 50vw, 33vw"
+            className="object-cover"
+          />
+        </div>
+      </a>
       {/* Product details */}
       <div className="flex-1">
         <h3>{product.title}</h3>
