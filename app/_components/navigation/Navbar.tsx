@@ -5,7 +5,7 @@ import Link from "next/link";
 import Logo from "../ui/Logo";
 import Button from "../ui/Button";
 import { X, Menu, ShoppingBag } from "lucide-react";
-import { Cart, useCart } from "@/app/_lib/stores";
+import { useCart } from "@/app/_lib/stores";
 
 const navLinks = [
   { label: "Home", href: "/" },
