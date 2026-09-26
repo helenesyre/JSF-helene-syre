@@ -12,7 +12,7 @@ export default function AddToCartCard({ product }: { product: Product }) {
   const { addProduct } = useCart();
 
   return (
-    <div className="mb-8 mt-0 mx-4 md:mx-8 bg-stone-50 p-4 shadow-md rounded-md flex flex-col md:flex-row gap-4 justify-between md:items-center">
+    <div className="mb-4 md:my-8 mx-4 md:mx-8 bg-stone-50 p-4 shadow-md rounded-md flex flex-col md:flex-row gap-4 justify-between md:items-center">
       <div className="flex flex-row md:items-center gap-4">
         {/* Product image */}
         <div className="w-20 h-20 relative">
