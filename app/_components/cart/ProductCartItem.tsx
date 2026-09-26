@@ -2,6 +2,7 @@ import { CartProduct } from "@/app/_lib/stores";
 import { Trash } from "lucide-react";
 import { useState } from "react";
 import Image from "next/image";
+import QuantitySelector from "../product/QuantitySelector";
 
 export default function ProductCartItem({
   product,
@@ -32,15 +33,12 @@ export default function ProductCartItem({
         <p>{product.price.toFixed(2)}kr</p>
       </div>
       {/* Product quantity controls */}
-      <div className="flex items-center gap-2">
-        <button onClick={onDecrease} className="px-2 py-1 bg-gray-300">
-          -
-        </button>
-        <p>{product.quantity}</p>
-        <button onClick={onIncrease} className="px-2 py-1 bg-gray-300">
-          +
-        </button>
-      </div>
+      <QuantitySelector
+        quantity={product.quantity}
+        onIncrease={onIncrease}
+        onDecrease={onDecrease}
+        minQuantity={0}
+      />
       {/* Remove product button */}
       <button onClick={onRemove}>
         <Trash

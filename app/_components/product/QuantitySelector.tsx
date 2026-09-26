@@ -2,12 +2,16 @@ import { SquareMinus, SquarePlus } from "lucide-react";
 
 export default function QuantitySelector({
   quantity,
-  setQuantity,
+  setQuantity = () => {},
   minQuantity = 1,
+  onIncrease = () => {},
+  onDecrease = () => {},
 }: {
   quantity: number;
-  setQuantity: (quantity: number) => void;
+  setQuantity?: (quantity: number) => void;
   minQuantity?: number;
+  onIncrease?: () => void;
+  onDecrease?: () => void;
 }) {
   const quantityValueClass =
     "px-2 py-1 border border-stone-300 border-1.5 bg-white w-10 h-10 flex items-center justify-center rounded";
@@ -17,14 +21,23 @@ export default function QuantitySelector({
     <div className="flex flex-row items-center gap-2">
       <p className="text-stone-500 font-medium">Quantity:</p>
       <button
-        onClick={() => setQuantity(Math.max(quantity - 1, minQuantity))}
+        onClick={() => {
+          setQuantity(Math.max(quantity - 1, minQuantity));
+          onDecrease?.();
+        }}
         className={buttonClass}
         disabled={quantity <= minQuantity}
       >
         <SquareMinus size={32} strokeWidth={1.5} />
       </button>
       <span className={quantityValueClass}>{quantity}</span>
-      <button onClick={() => setQuantity(quantity + 1)} className={buttonClass}>
+      <button
+        onClick={() => {
+          setQuantity(quantity + 1);
+          onIncrease?.();
+        }}
+        className={buttonClass}
+      >
         <SquarePlus size={32} strokeWidth={1.5} />
       </button>
     </div>
